@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meet Our Coaches | TriCity Swim</title>
+  <meta name="description" content="Meet the TriCity Swim coaching team and learn more about Coach Nolan and Coach Emily." />
+  <link rel="icon" type="image/png" href="favicon2.png" />
+  <style>
+    :root {
+      --bg: #f7fbff;
+      --surface: #ffffff;
+      --primary: #78c8ff;
+      --primary-dark: #2493df;
+      --text: #14314a;
+      --muted: #628097;
+      --line: #d8ebf8;
+      --shadow: 0 18px 45px rgba(26, 94, 143, 0.12);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --container: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(120, 200, 255, 0.28), transparent 32%),
+        radial-gradient(circle at right 15%, rgba(120, 200, 255, 0.18), transparent 25%),
+        linear-gradient(180deg, #fbfeff 0%, var(--bg) 100%);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .page {
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(3px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .shape.one {
+      width: 240px;
+      height: 240px;
+      top: 90px;
+      right: -60px;
+      background: rgba(120, 200, 255, 0.22);
+    }
+
+    .shape.two {
+      width: 180px;
+      height: 180px;
+      top: 500px;
+      left: -50px;
+      background: rgba(83, 187, 245, 0.16);
+    }
+
+    .shape.three {
+      width: 260px;
+      height: 260px;
+      bottom: 120px;
+      right: -70px;
+      background: rgba(120, 200, 255, 0.15);
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--container));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(247, 251, 255, 0.84);
+      border-bottom: 1px solid rgba(216, 235, 248, 0.8);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      font-size: 1.1rem;
+    }
+
+    .logo {
+      width: 68px;
+      height: 68px;
+      border-radius: 20px;
+      overflow: hidden;
+      flex: 0 0 68px;
+      box-shadow: 0 12px 28px rgba(36, 147, 223, 0.16);
+      background: white;
+      border: 1px solid rgba(216, 235, 248, 0.95);
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .phone-chip {
+      padding: 11px 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.88);
+      border-radius: 999px;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: white;
+      box-shadow: 0 16px 32px rgba(36, 147, 223, 0.28);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .hero {
+      padding: 42px 0 20px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(120, 200, 255, 0.18);
+      color: var(--primary-dark);
+      font-weight: 800;
+      font-size: 0.92rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(2.5rem, 6vw, 4.3rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 760px;
+      font-size: 1.08rem;
+      color: var(--muted);
+    }
+
+    .coach-section {
+      padding: 12px 0 70px;
+    }
+
+    .coach-list {
+      display: grid;
+      gap: 24px;
+    }
+
+    .coach-card {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 26px;
+      align-items: stretch;
+      background: rgba(255,255,255,0.88);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .coach-photo-wrap {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      min-height: 100%;
+      background: linear-gradient(135deg, rgba(120, 200, 255, 0.18), rgba(255,255,255,0.95));
+      border: 1px solid rgba(216, 235, 248, 0.95);
+    }
+
+    .coach-photo {
+      width: 100%;
+      height: 100%;
+      min-height: 520px;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .coach-badge {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      background: rgba(255,255,255,0.94);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 12px 14px;
+      box-shadow: 0 12px 26px rgba(38, 93, 133, 0.12);
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .coach-content {
+      padding: 10px 4px;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+    }
+
+    .coach-content p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .detail-card {
+      background: #f8fcff;
+      border: 1px solid #d7ecfa;
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .detail-card strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--text);
+    }
+
+    .detail-card span {
+      color: var(--muted);
+    }
+
+    .footer-cta {
+      margin-top: 26px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      padding: 0 0 36px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 960px) {
+      .coach-card { grid-template-columns: 1fr; }
+      .coach-photo { min-height: 420px; }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(calc(100% - 20px), var(--container)); }
+      nav { flex-direction: column; align-items: stretch; padding: 12px 0; }
+      .nav-actions { justify-content: flex-start; }
+      .nav-actions .btn, .nav-actions .phone-chip { min-height: 46px; padding: 12px 16px; font-size: 0.98rem; }
+      .hero { padding-top: 24px; }
+      .coach-card { padding: 16px; }
+      .coach-photo { min-height: 320px; }
+      .detail-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 420px) {
+      .nav-actions { display: grid; grid-template-columns: 1fr; }
+      .nav-actions .btn, .nav-actions .phone-chip { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="shape one"></div>
+    <div class="shape two"></div>
+    <div class="shape three"></div>
+
+    <div class="nav-wrap">
+      <div class="container">
+        <nav>
+          <a href="index.html" class="brand" aria-label="TriCity Swim home">
+            <div class="logo"><img src="Logo.png" alt="TriCity Swim logo" /></div>
+            <span>TriCity Swim</span>
+          </a>
+          <div class="nav-actions">
+            <a class="btn btn-secondary" href="index.html">Home</a>
+            <a class="btn btn-secondary" href="About us.html">About Us</a>
+            <a class="phone-chip" href="tel:2365096782">📞 236-509-6782</a>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <div class="eyebrow">✨ Meet Our Coaches</div>
+          <h1>Friendly instructors who make swimming feel fun and confident.</h1>
+          <p>Our team brings experience, patience, and real love for the water into every lesson. Here is a closer look at the coaches helping TriCity Swim swimmers grow.</p>
+        </div>
+      </section>
+
+      <section class="coach-section">
+        <div class="container">
+          <div class="coach-list">
+            <div class="coach-card">
+              <div class="coach-photo-wrap">
+                <img class="coach-photo" src="coach-nolan.jpeg" alt="Coach Nolan standing beside a Jollibee display and giving two thumbs up." />
+                <div class="coach-badge">Coach Nolan</div>
+              </div>
+              <div class="coach-content">
+                <div class="eyebrow">🏊 Coach Profile</div>
+                <h2>Meet Coach Nolan</h2>
+                <p>Coach Nolan has been swimming for his whole life and first got started when he was just 5 years old. He has been an instructor for 3 years, and he brings a calm, encouraging style that helps swimmers feel comfortable while still making strong progress in the water.</p>
+                <p>Outside of lessons, Nolan is a first-year student at UBC. His favourite food is fried chicken from Jollibee, which makes this photo a pretty perfect fit.</p>
+                <div class="detail-grid">
+                  <div class="detail-card">
+                    <strong>Swimming background</strong>
+                    <span>Swimming since age 5</span>
+                  </div>
+                  <div class="detail-card">
+                    <strong>Instructor experience</strong>
+                    <span>3 years of teaching</span>
+                  </div>
+                  <div class="detail-card">
+                    <strong>School</strong>
+                    <span>First-year student at UBC</span>
+                  </div>
+                  <div class="detail-card">
+                    <strong>Favourite food</strong>
+                    <span>Fried chicken from Jollibee</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="coach-card">
+              <div class="coach-photo-wrap">
+                <img class="coach-photo" src="coach-emily.png" alt="Coach Emily sitting at Hello Kitty Cafe Vancouver." />
+                <div class="coach-badge">Coach Emily</div>
+              </div>
+              <div class="coach-content">
+                <div class="eyebrow">🏊 Coach Profile</div>
+                <h2>Meet Coach Emily</h2>
+                <p>Coach Emily is a high school senior who has been swimming for her whole life. She has also been a competitive swimmer for 10 years, giving her a strong understanding of technique, consistency, and confidence in the water.</p>
+                <p>She brings a calm and supportive energy to lessons, and her favourite food is sushi.</p>
+                <div class="detail-grid">
+                  <div class="detail-card">
+                    <strong>Swimming background</strong>
+                    <span>Swimming her whole life</span>
+                  </div>
+                  <div class="detail-card">
+                    <strong>Competitive experience</strong>
+                    <span>10 years of competitive swimming</span>
+                  </div>
+                  <div class="detail-card">
+                    <strong>School</strong>
+                    <span>High school senior</span>
+                  </div>
+                  <div class="detail-card">
+                    <strong>Favourite food</strong>
+                    <span>Sushi</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">TriCity Swim • Private swim lessons in Coquitlam</div>
+    </footer>
+  </div>
+</body>
+</html>
